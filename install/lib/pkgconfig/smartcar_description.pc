@@ -1,8 +1,8 @@
-prefix=/home/zhuhe/vehicle_demo/install
+prefix=/home/zhuhe/zhuhe/vehicle_demo/install
 
 Name: smartcar_description
 Description: Description of smartcar_description
 Version: 0.0.0
 Cflags: 
-Libs: -L/home/zhuhe/vehicle_demo/install/lib 
+Libs: -L${prefix}/lib 
 Requires: 

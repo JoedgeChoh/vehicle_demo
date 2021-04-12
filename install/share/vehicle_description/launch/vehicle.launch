@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="robot_description" command="$(find xacro)/xacro --inorder $(find vehicle_description)/urdf/test.urdf.xacro" />
+  <node pkg="robot_state_publisher" type="robot_state_publisher" name="pioneer_robot_state_publisher">
+    <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" >
+  <param name="publish_frequency" type="double" value="30.0" />
+  </node>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find vehicle_description)/rviz/display.rviz"/>
+</launch>

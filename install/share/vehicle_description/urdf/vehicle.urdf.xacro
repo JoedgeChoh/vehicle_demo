@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<robot name="pioneer">
+  <link name="base_footprint"/>
+  <link name="ins"/>
+  <joint name="ins" type="fixed">
+    <origin xyz="0 0 0.33" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="ins"/>
+  </joint>
+  <link name="velo32_left"/>
+  <joint name="velo32_left" type="fixed">
+    <!-- <origin xyz="3.30 0.9275 1.2" rpy="-0.0258 -0.0015 0.71"/> -->
+    <origin xyz="3.3 0.851 1.2" rpy="-0.0558 0.0115 0.71"/>
+    <parent link="ins"/>
+    <child link="velo32_left"/>
+  </joint>
+  <!-- <link name="geometry_center"/>
+  <joint name="geometry_center" type="fixed">
+    <origin xyz="1.4249 0 0" rpy="0 0 0"/>
+    <parent link="ins"/>
+    <child link="geometry_center"/>
+  </joint> -->
+  <link name="velo32_right"/>
+  <joint name="velo32_right" type="fixed">
+    <origin xyz="-1.2293 -1.3863 -0.1219" rpy="0.0438 0.085 -1.2987"/>
+    <parent link="velo32_left"/>
+    <child link="velo32_right"/>
+  </joint>
+  <link name="velo16_rightfront"/>
+  <joint name="velo16_rightfront" type="fixed">
+    <origin xyz="0.952 0.658 -1.2594" rpy="-0.0679 -0.0307 -0.2257"/>
+    <parent link="velo32_right"/>
+    <child link="velo16_rightfront"/>
+  </joint>
+  <link name="velo16_leftfront"/>
+  <joint name="velo16_leftfront" type="fixed">
+    <origin xyz="0.8472 -0.6362 -1.3746" rpy="0.0996 -0.0808 0.2502"/>
+    <parent link="velo32_left"/>
+    <child link="velo16_leftfront"/>
+  </joint>
+  <link name="velo16_rightback"/>
+  <joint name="velo16_rightback" type="fixed">
+    <origin xyz="-3.8616  -2.5741 -1.5111" rpy="0.0268 0.0179 -2.055"/>
+    <parent link="velo32_right"/>
+    <child link="velo16_rightback"/>
+  </joint>
+  <!-- 111 -->
+  <link name="velo16_leftback"/>  
+  <joint name="velo16_leftback" type="fixed">
+    <origin xyz="-3.4924 3.1873 -1.2989" rpy="-0.0127 -0.0772 1.5035"/>
+    <parent link="velo32_left"/>
+    <child link="velo16_leftback"/>
+  </joint>
+  <!-- <link name="velo_right"/>
+  <joint name="velo_right" type="fixed">
+    <origin xyz="-0.337626 -0.663687 -0.304364" rpy="-0.0409629 0.700854 -1.59972"/>
+    <parent link="velo_middle"/>
+    <child link="velo_right"/>
+  </joint> -->
+  <!-- <link name="mmw"/>
+  <joint name="mmw" type="fixed">
+    <origin xyz="4.0 0.4 0.0" rpy="0 0 0"/>
+    <parent link="ins"/>
+    <child link="mmw"/>
+  </joint> -->
+  <!-- <link name="ibeo"/>
+  <joint name="ibeo" type="fixed">
+    <origin xyz="-1.44896 -0.0076 -1.405956697736924" rpy="0 0 -0.0003934015022053763"/>
+    <parent link="velo_middle"/>
+    <child link="ibeo"/>
+  </joint>
+  <link name="image"/>
+  <joint name="image" type="fixed">
+    <origin xyz="-1.3932172954082489e-01 -1.8275487422943115e-01 -8.6978554725646973e-02" rpy="-1.59457 0.00842994 -1.55547"/>
+    <parent link="velo_middle"/>
+    <child link="image"/>
+  </joint> -->
+</robot>

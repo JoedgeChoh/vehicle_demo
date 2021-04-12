@@ -1,0 +1,8 @@
+prefix=/home/zhuhe/zhuhe/vehicle_demo/install
+
+Name: vehicle_description
+Description: Description of vehicle_description
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

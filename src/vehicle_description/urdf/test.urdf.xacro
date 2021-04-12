@@ -1,0 +1,296 @@
+<?xml version="1.0"?>
+<robot name="pioneer">
+  <link name="base_footprint"/>
+  <!--carbady-->
+  <link name="ins">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <mass value="1500.0"/>
+      <inertia ixx="1000.0" ixy="0" ixz="0" iyy="1000.0" iyz="0" izz="1000.0"/>
+    </inertial>
+    <visual name="chassis">
+      <origin xyz="0 0 -0.362" rpy="0 0 1.570796"/>
+      <geometry>
+        <mesh filename="package://vehicle_description/meshes/body.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+      <material name="black.001"/>
+    </visual>
+    <collision name="chassis_collision">
+      <origin xyz="0 0 -0.362" rpy="0 0 1.570796"/>
+      <geometry>
+        <mesh filename="package://vehicle_description/meshes/body_collision.stl"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="steer_fl">
+    <inertial>
+      <origin xyz="-0.013054 -0.0295 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.037227" ixy="0" ixz="0" iyy="0.04" iyz="0" izz="0.06"/>
+    </inertial>
+  </link>
+
+  <link name="steer_fr">
+    <inertial>
+      <origin xyz="-0.01305 0.0275 0" rpy="0 0 0"/>
+      <mass value="1.0"/>
+      <inertia ixx="0.037227" ixy="0" ixz="0" iyy="0.04" iyz="0" izz="0.06"/>
+    </inertial>
+  </link>
+
+  <link name="wheel_fl">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 -3.141593 0"/>
+      <mass value="10.0"/>
+      <inertia ixx="0.305583" ixy="0" ixz="0" iyy="0.305583" iyz="0" izz="0.5445"/>
+    </inertial>
+    <visual name="wheel_fl_visual">
+      <origin xyz="0 0 0" rpy="-1.570796 -1.570796 0"/>
+      <geometry>
+        <mesh filename="package://vehicle_description/meshes/wheel.dae" scale="0.012 0.012 0.012"/>
+      </geometry>
+      <material name="carpaint_002"/>
+    </visual>
+    <collision name="wheel_fl_collision">
+      <origin xyz="0 0 0" rpy="0 -3.141593 0"/>
+      <geometry>
+        <cylinder radius="0.362" length="0.225"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wheel_fr">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 3.141593 0"/>
+      <mass value="10.0"/>
+      <inertia ixx="0.305583" ixy="0" ixz="0" iyy="0.305583" iyz="0" izz="0.5445"/>
+    </inertial>
+    <visual name="wheel_fr_visual">
+      <origin xyz="0 0 0" rpy="-1.570796 1.570796 0"/>
+      <geometry>
+        <mesh filename="package://vehicle_description/meshes/wheel.dae" scale="0.012 0.012 0.012"/>
+      </geometry>
+      <material name="carpaint_002.001"/>
+    </visual>
+    <collision name="wheel_fr_collision">
+      <origin xyz="0 0 -0.0035" rpy="0 3.141593 0"/>
+      <geometry>
+        <cylinder radius="0.362" length="0.225"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wheel_rl">
+    <inertial>
+      <origin xyz="0 0 -0.021117" rpy="0 3.141593 0"/>
+      <mass value="10.0"/>
+      <inertia ixx="0.305583" ixy="0" ixz="0" iyy="0.305583" iyz="0" izz="0.5445"/>
+    </inertial>
+    <visual name="wheel_rl_visual">
+      <origin xyz="0 0 0.0" rpy="-1.570796 -1.570796 0"/>
+      <geometry>
+        <mesh filename="package://vehicle_description/meshes/wheel.dae" scale="0.012 0.012 0.012"/>
+      </geometry>
+      <material name="carpaint_002.003"/>
+    </visual>
+    <collision name="wheel_rl_collision">
+      <origin xyz="0 0 -0.021117" rpy="0 3.141593 0"/>
+      <geometry>
+        <cylinder radius="0.362" length="0.225"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <link name="wheel_rr">
+    <inertial>
+      <origin xyz="0 0 0.0205" rpy="0 3.141593 0"/>
+      <mass value="10.0"/>
+      <inertia ixx="0.305583" ixy="0" ixz="0" iyy="0.305583" iyz="0" izz="0.5445"/>
+    </inertial>
+    <visual name="wheel_rr_visual">
+      <origin xyz="0 0 0" rpy="-1.570796 1.570796 0"/>
+      <geometry>
+          <mesh filename="package://vehicle_description/meshes/wheel.dae" scale="0.012 0.012 0.012"/>
+      </geometry>
+      <material name="carpaint_002.002"/>
+    </visual>
+    <collision name="wheel_rr_collision">
+      <origin xyz="0 0 0.0205" rpy="0 3.141593 0"/>
+      <geometry>
+        <cylinder radius="0.362" length="0.225"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="ins" type="fixed">
+      <origin xyz="0 0 0.3" rpy="0 0 0"/>
+      <parent link="base_footprint"/>
+      <child link="ins"/>
+    </joint>
+
+    <joint name="steer_fl" type="revolute">
+      <origin xyz="3.665 0.85525 0.0" rpy="0 0 0"/>
+      <parent link="ins"/>
+      <child link="steer_fl"/>
+      <axis xyz="0 0 1.0"/>
+      <limit lower="-0.6" upper="0.6" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="steer_fr" type="revolute">
+      <origin xyz="3.665 -0.85525 0.0" rpy="0 0 0"/>
+      <parent link="ins"/>
+      <child link="steer_fr"/>
+      <axis xyz="0 0 1.0"/>
+      <limit lower="-0.6" upper="0.6" effort="0" velocity="0"/>
+    </joint>
+
+    <joint name="wheel_fl" type="continuous">
+      <origin xyz="0 0 0" rpy="1.570796 0 -3.141593"/>
+      <parent link="steer_fl"/>
+      <child link="wheel_fl"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="0" velocity="22.0"/>
+    </joint>
+
+    <joint name="wheel_fr" type="continuous">
+      <origin xyz="0 0 0" rpy="1.570796 0 -3.141593"/>
+      <parent link="steer_fr"/>
+      <child link="wheel_fr"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="0" velocity="22.0"/>
+    </joint>
+
+    <joint name="wheel_rl" type="continuous">
+      <origin xyz="0 0.85525 0" rpy="1.570796 0 -3.141593"/>
+      <parent link="ins"/>
+      <child link="wheel_rl"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="5000.0" velocity="22.0"/>
+    </joint>
+
+    <joint name="wheel_rr" type="continuous">
+      <origin xyz="0 -0.85525 0" rpy="1.570796 0 -3.141593"/>
+      <parent link="ins"/>
+      <child link="wheel_rr"/>
+      <axis xyz="0 0 1.0"/>
+      <limit effort="5000.0" velocity="22.0"/>
+    </joint>
+
+    <material name="black.001">
+      <color rgba="0 0 0 1.0"/>
+    </material>
+
+    <material name="carpaint_002">
+      <color rgba="0.941177 0.941177 0.941177 1.0"/>
+    </material>
+
+    <material name="carpaint_002.001">
+      <color rgba="0.941177 0.941177 0.941177 1.0"/>
+    </material>
+
+    <material name="carpaint_002.002">
+      <color rgba="0.941177 0.941177 0.941177 1.0"/>
+    </material>
+
+    <material name="carpaint_002.003">
+      <color rgba="0.941177 0.941177 0.941177 1.0"/>
+    </material>
+   
+    <!--sensor-->
+  <link name="velo32_left">
+    <visual name="velo32_left">
+      <origin xyz="0 0.2 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://velodyne_description/meshes/HDL32E_base.dae" scale="2.0 2.0 2.0"/>
+      </geometry>
+    </visual>
+   </link>
+   <link name="velo32_right">
+    <visual name="velo32_right">
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://velodyne_description/meshes/HDL32E_base.dae" scale="2.0 2.0 2.0"/>
+      </geometry>
+    </visual>
+   </link>
+    <link name="velo16_rightfront">
+    <visual name="velo16_rightfront">
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://velodyne_description/meshes/VLP16_base_2.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </visual>
+   </link>
+
+ <link name="velo16_leftfront">
+    <visual name="velo16_leftfront">
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://velodyne_description/meshes/VLP16_base_2.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </visual>
+   </link>
+
+ <link name="velo16_rightback">
+    <visual name="velo16_rightback">
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://velodyne_description/meshes/VLP16_base_2.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </visual>
+   </link>
+
+
+ <link name="velo16_leftback">
+    <visual name="velo16_leftback">
+      <origin xyz="0 0 0.1" rpy="0 0 0"/>
+      <geometry>
+        <mesh filename="package://velodyne_description/meshes/VLP16_base_2.dae" scale="1.0 1.0 1.0"/>
+      </geometry>
+    </visual>
+   </link>
+
+
+    
+  <joint name="ins2" type="fixed">
+    <origin xyz="0 0 0.33" rpy="0 0 0"/>
+    <parent link="base_footprint"/>
+    <child link="ins"/>
+  </joint>
+  <!--<link name="velo32_left"/>-->
+  <joint name="velo32_left" type="fixed">
+    <!--<origin xyz="3.3 0.851 1.2" rpy="-0.0558 0.0115 0.71"/>-->
+    <origin rpy="-0.0558 0.0115 0.71" xyz="3.3 0.851 1.2" />
+    <parent link="ins"/>
+    <child link="velo32_left"/>
+  </joint>
+  <!--  <link name="velo32_right"/>-->
+  <joint name="velo32_right" type="fixed">
+    <origin xyz="-1.2293 -1.3863 -0.1219" rpy="0.0438 0.085 -1.2987"/>    <origin xyz="1 0 0" rpy="0.0438 0.085 -1.2987"/>
+    <parent link="velo32_left"/>
+    <child link="velo32_right"/>
+  </joint>
+  <!--  <link name="velo16_rightfront"/>-->
+  <joint name="velo16_rightfront" type="fixed">
+    <origin xyz="0.952 0.658 -1.2594" rpy="-0.0679 -0.0307 -0.2257"/>
+    <parent link="velo32_right"/>
+    <child link="velo16_rightfront"/>a
+  </joint>
+  <!--  <link name="velo16_leftfront"/>-->
+  <joint name="velo16_leftfront" type="fixed">
+    <origin xyz="0.8472 -0.6362 -1.3746" rpy="0.0996 -0.0808 0.2502"/>
+    <parent link="velo32_left"/>
+    <child link="velo16_leftfront"/>
+  </joint>
+  <!--  <link name="velo16_rightback"/>-->
+  <joint name="velo16_rightback" type="fixed">
+    <origin xyz="-3.8616  -2.5741 -1.5111" rpy="0.0268 0.0179 -2.055"/>
+    <parent link="velo32_right"/>
+    <child link="velo16_rightback"/>
+  </joint>
+  <!--  <link name="velo16_leftback"/>  -->
+  <joint name="velo16_leftback" type="fixed">
+    <origin xyz="-3.4924 3.1873 -1.2989" rpy="-0.0127 -0.0772 1.5035"/>
+    <parent link="velo32_left"/>
+    <child link="velo16_leftback"/>
+  </joint>
+</robot>

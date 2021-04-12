@@ -28,7 +28,6 @@
     <remap from="/joint_states" to="/vehicle/joint_states" />
   </node>
 
-
   <!--</group>-->
 
   <!--Gazebo-->
@@ -37,4 +36,11 @@
   <!--Rviz-->
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find vehicle)/rviz/vehicle_rviz.rviz"/>
 
+
+  <!--static tf-->
+  <node name="base_footprint2ins" pkg="tf2_ros" type="static_transform_publisher" args="0 0 0.3 0 0 0 base_footprint ins"/>
+  <node name="ins_velodyne" pkg="tf2_ros" type="static_transform_publisher" args="3.3 0.851 1.2 -0.028154 -0.0043070 0.347599748 0.93721 ins velo32_left"/>
+  <!--<node name="ins_velodyne" pkg="tf2_ros" type="static_transform_publisher" args="3.3 0.851 1.2 0 0 0 ins velo32_left"/>-->
+   <node name="left32_right32" pkg="tf2_ros" type="static_transform_publisher" args="-1.13549 -1.4474 -0.156  0.040854 0.019669 -0.60211 0.79712 velo32_left velo32_right"/>
+   <!--<node name="left32_right32" pkg="tf2_ros" type="static_transform_publisher" args="-1.13549 -1.4474 -0.156 -74 0 0  velo32_left velo32_right"/>-->
 </launch>
